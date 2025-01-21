@@ -47,29 +47,14 @@ cd ai-hedge-fund
 
 1. Install Poetry (if not already installed):
 ```bash
-curl -sSL https://install.python-poetry.org | python3 -
+pip install django
 ```
 
-2. Install dependencies:
-```bash
-poetry install
-```
-
-3. Set up your environment variables:
+2. Set up your environment variables:
 ```bash
 # Create .env file for your API keys
 cp .env.example .env
 ```
-
-Set the API keys in the .env file:
-```
-# Get your OpenAI API key from https://platform.openai.com/
-OPENAI_API_KEY=your-openai-api-key
-
-# Get your Financial Datasets API key from https://financialdatasets.ai/
-FINANCIAL_DATASETS_API_KEY=your-financial-datasets-api-key
-```
-
 **Important**: You must to set the OpenAI API key for the hedge fund to work.
 
 Financial data for AAPL, GOOGL, MSFT, NVDA, and TSLA is free and does not require an API key.
@@ -80,55 +65,43 @@ For any other ticker, you will need to set the `FINANCIAL_DATASETS_API_KEY` in t
 
 ### Running the Hedge Fund
 ```bash
-poetry run python src/main.py --ticker AAPL,MSFT,NVDA
+python manage.py runserver 8001 (Port address )
 ```
 
 **Example Output:**
 <img width="992" alt="Screenshot 2025-01-06 at 5 50 17 PM" src="https://github.com/user-attachments/assets/e8ca04bf-9989-4a7d-a8b4-34e04666663b" />
 
-You can also specify a `--show-reasoning` flag to print the reasoning of each agent to the console.
-
-```bash
-poetry run python src/main.py --ticker AAPL,MSFT,NVDA --show-reasoning
-```
-You can optionally specify the start and end dates to make decisions for a specific time period.
-
-```bash
-poetry run python src/main.py --ticker AAPL,MSFT,NVDA --start-date 2024-01-01 --end-date 2024-03-01 
-```
-
-### Running the Backtester
-
-```bash
-poetry run python src/backtester.py --ticker AAPL,MSFT,NVDA
-```
-
 **Example Output:**
 <img width="941" alt="Screenshot 2025-01-06 at 5 47 52 PM" src="https://github.com/user-attachments/assets/00e794ea-8628-44e6-9a84-8f8a31ad3b47" />
 
-You can optionally specify the start and end dates to backtest over a specific time period.
-
-```bash
-poetry run python src/backtester.py --ticker AAPL,MSFT,NVDA --start-date 2024-01-01 --end-date 2024-03-01
-```
-
 ## Project Structure 
 ```
-ai-hedge-fund/
-├── src/
-│   ├── agents/                   # Agent definitions and workflow
-│   │   ├── fundamentals.py       # Fundamental analysis agent
-│   │   ├── portfolio_manager.py  # Portfolio management agent
-│   │   ├── risk_manager.py       # Risk management agent
-│   │   ├── sentiment.py          # Sentiment analysis agent
-│   │   ├── technicals.py         # Technical analysis agent
-│   │   ├── valuation.py          # Valuation analysis agent
-│   ├── tools/                    # Agent tools
-│   │   ├── api.py                # API tools
-│   ├── backtester.py             # Backtesting tools
-│   ├── main.py # Main entry point
-├── pyproject.toml
-├── ...
+Ecommrce/
+├── Ecommerce/
+│   ├── Detils_all/                 
+│   │   ├── templates
+|   |       ├── datasend.html      
+│   │   ├── models.py  
+│   │   ├── urls.py       
+│   │   ├── views.py.py        
+│   │   ├── admin.py        
+│   ├── Ecommerce                   
+│   │   ├── settings.py
+|   |   ├── urls.py
+|   |   ├── Views.py        
+│   ├── Media
+│   ├── Static/admin
+|   |   ├──Css
+|   |   ├──img
+|   |   ├──Java script
+├   ├── Sign_up_in
+|   |   ├── models.py
+|   |   ├── views.py
+|   |   ├── urls.py
+|   ├── templates
+|   |   ├── index.html
+|   ├── manage.py
+...
 ```
 
 ## Contributing
