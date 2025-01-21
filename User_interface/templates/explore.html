@@ -1,103 +1,143 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City Search and Details</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indian Paradise</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+        *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7fc;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
+        font-family: Arial, sans-serif;
+        background-color: #fbfbfb;
+        color: #000000;
         }
-
-        .searching-bar {
+        .searching-funct{
+        width: 100%;
+        height: 80px;
+        padding: 15px;
+        background-color: rgb(255, 255, 255);
+        text-align: center;
+        }
+        .inpt-search{
+        width: 800px;
+        height: 40px;
+        border-radius: 30px;
+        font-size: 20px;
+        border-color: rgb(63, 63, 210);
+        text-align: center;
+        
+        }
+        .btn-search{
+        width: 100px;
+        height: 40px;
+        border-radius: 30px;
+        border: none;
+        background-color: rgb(63, 63, 210);
+        color: rgb(255, 255, 255);
+        font-size: 20px;
+        }
+        .outer-box{
+        width: 100%;
+        height: 500px;
+        background-color:rgb(255, 255, 255) ;
+        }
+        .outer-box1,.outer-box3,.outer-box2{
+        width: 22%;
+        height: 420px;
+        float: left;
+        border-radius: 15px;
+        background-color: #ffffff;
+        margin: 20px 20px 20px 20px;
+        box-shadow: 5px 5px 20px 1px rgb(74, 69, 69);
+        transition: all 0.3s ease;
+        }
+        .outer-box1:hover, .outer-box2:hover, .outer-box3:hover {
+        transform: translateY(-1px); /* Lift the box up */
+        box-shadow: 5px 5px 30px 10px rgba(253, 156, 0, 0.2); /* Stronger shadow on hover */
+        }
+        .img-outer img{
+        height: 250px;
+        width: 100%;
+        border-radius:  10px 10px 0px 0px;        
+        }
+        .items-all{
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+        .text-h1{
+        text-decoration: none;
+        text-align: center;
+        }
+        .text-p1{
+        text-align: center;  
+        }
+        .description-p1{
+        text-align: justify;
+        }
+        .text-button {
             display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
+            justify-content: center;  /* Centers button horizontally */
+            align-items: center;          /* Makes the parent div take up the full height of the viewport */
+          }
+          
+        .text-button button {
+            height: 35px;
+            width: 100px;
+            border-radius: 5px;
+            color: black;
+            font-size: 20px;
+            background-color:rgb(211, 175, 30);
+            text-decoration: bold;
+            border: none ;
         }
+          
 
-        .searching-bar input, .searching-bar button {
-            padding: 12px;
-            font-size: 16px;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .searching-bar input {
-            width: 70%;
-            border: 2px solid #007BFF;
-        }
-
-        .searching-bar input:focus {
-            border-color: #0056b3;
-            outline: none;
-            box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
-        }
-
-        .searching-bar button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            margin-left: 10px;
-            cursor: pointer;
-        }
-
-        .searching-bar button:hover {
-            background-color: #0056b3;
-        }
-        all-city-data{
-            width: 1000px;
-            height : 400px;
-            bakground-color : green ;
-        }
-
-    </style>
+  </style>
 </head>
 <body>
-
-    <div class="searching-bar">
-        <input type="text" id="searchInput" placeholder="Search for City, Places and more...">
-        <button type="button" onclick="searchCity()">Search</button>
+  <div class="search-bar">
+    <div class="searching-funct">
+      <form action="" method="POST">
+        <input type="text" name="" placeholder=" Search, City, Places and more ..." class="inpt-search"> 
+        <button type="submit" class="btn-search">Search</button>
+      </form>
     </div>
+  </div>
 
-    {% comment %} {% for j in city %} {% endcomment %}
-    <div class="all-city-data">
-        <div class="city-images">
-            <button type="button" onclick="changeImage('prev')">⬅️</button>
-            <div class="image-container">
-                <img src="/media/{{ j.city_pics01}}" alt="City Image 1" class="active">
-                <img src="/media/{{ j.city_pics02}}" alt="City Image 2">
-                <img src="/media/{{ j.city_pics03}}" alt="City Image 3">
-                <img src="/media/{{ j.city_pics04}}" alt="City Image 4">
-            </div>
-            <button type="button" onclick="changeImage('next')">➡️</button>
-        </div>
-
-       <div class="heading-name">
+  <div class="outer-box">
+    {% for j in city %}
+    <div class="outer-box1">
+      <div class="img-outer">
+        <img src="/media/{{ j.city_pics02}}" alt="City Image 2">
+      </div>
+        <div class="items-all">
+            <div class="text-h1">
             <h2>{{ j.city_name }}</h2>
-        </div>
-
-        <div class="reviews">
-            <p>Customer Ratings: ⭐⭐⭐⭐</p>
-        </div>   
-
-        <div class="description">
-            <h3>Description</h3>
-            <p>{{ j.city_description }}</p>
+            </div>
+            <br>
+            <div class="text-p1">
+            <p>People Suggestions :⭐⭐⭐⭐⭐</p>
+            </div>
+            <br>
+            <div class="description-p1">
+            {% comment %} <p>Description : {{ j.city_description }} </p> {% endcomment %}
+            </div>
+            <hr>
+            <br>
+            <div class="text-button">
+            <button type="button">Explore</button>
+            </div>
         </div>
     </div>
-    {% comment %} {% endfor %} {% endcomment %}
-    </div>
-
-    
+    {% endfor %}
+  </div>
 </body>
 </html>
+
