@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Search and Details</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .searching-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .searching-bar input, .searching-bar button {
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .searching-bar input {
+            width: 70%;
+            border: 2px solid #007BFF;
+        }
+
+        .searching-bar input:focus {
+            border-color: #0056b3;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+        }
+
+        .searching-bar button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .searching-bar button:hover {
+            background-color: #0056b3;
+        }
+        all-city-data{
+            width: 1000px;
+            height : 400px;
+            bakground-color : green ;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="searching-bar">
+        <input type="text" id="searchInput" placeholder="Search for City, Places and more...">
+        <button type="button" onclick="searchCity()">Search</button>
+    </div>
+
+    {% comment %} {% for j in city %} {% endcomment %}
+    <div class="all-city-data">
+        <div class="city-images">
+            <button type="button" onclick="changeImage('prev')">⬅️</button>
+            <div class="image-container">
+                <img src="/media/{{ j.city_pics01}}" alt="City Image 1" class="active">
+                <img src="/media/{{ j.city_pics02}}" alt="City Image 2">
+                <img src="/media/{{ j.city_pics03}}" alt="City Image 3">
+                <img src="/media/{{ j.city_pics04}}" alt="City Image 4">
+            </div>
+            <button type="button" onclick="changeImage('next')">➡️</button>
+        </div>
+
+       <div class="heading-name">
+            <h2>{{ j.city_name }}</h2>
+        </div>
+
+        <div class="reviews">
+            <p>Customer Ratings: ⭐⭐⭐⭐</p>
+        </div>   
+
+        <div class="description">
+            <h3>Description</h3>
+            <p>{{ j.city_description }}</p>
+        </div>
+    </div>
+    {% comment %} {% endfor %} {% endcomment %}
+    </div>
+
+    
+</body>
+</html>

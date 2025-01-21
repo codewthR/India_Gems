@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sending Data</title>
+    <style>/* General form container styling */
+        .sending-data {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        /* Label styling */
+        .sending-data label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 6px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Input field styling */
+        .sending-data input[type="text"],
+        .sending-data input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: #fff;
+            transition: border-color 0.3s ease;
+        }
+        
+        .sending-data input[type="text"]:focus,
+        .sending-data input[type="file"]:focus {
+            border-color: #2575fc;
+            outline: none;
+        }
+        
+        /* Button styling */
+        .sending-data button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #2575fc;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .sending-data button[type="submit"]:hover {
+            background-color: #1e63d5;
+        }
+        
+        /* Placeholder for spacing between elements */
+        .sending-data .form-group {
+            margin-bottom: 20px;
+        }
+        
+        /* Style for file input */
+        .sending-data input[type="file"] {
+            padding: 5px;
+            border: 1px solid #ddd;
+        }
+        
+        /* Small adjustments for responsive design */
+        @media screen and (max-width: 480px) {
+            .sending-data {
+                padding: 15px;
+            }
+        
+            .sending-data input[type="text"],
+            .sending-data input[type="file"],
+            .sending-data button[type="submit"] {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+        </style>
+</head>
+<body>
+    <div class="sending-data">
+        <form action="" method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+            <label for="409">State name</label>
+            <input type="text" name="state_name" id="409">
+            <label for="410">Picture</label>
+            <input type="file" name="state_images" id="410">
+            <button type="submit">Send Data</button>
+        </form>
+
+        {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+    </div>
+</body>
+</html>

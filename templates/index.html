@@ -1,0 +1,411 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>India Paradise</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Body and general styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.226);;
+            padding: 7px 15px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+        
+        .navbar .logo h1 {
+            color: #fff;
+            font-size: 30px;
+        }
+        
+        .navbar .nav-links {
+            list-style-type: none;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .navbar .nav-links li {
+            display: inline-block;
+        }
+        
+        .navbar .nav-links li a {
+            text-decoration: none;
+        }
+        
+        .navbar button {
+            background-color: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .navbar button:hover {
+            background-color: #f5a300;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-image: url('https://www.travelandleisure.com/thmb/N7nAYBaxIryJ_DqKqdpSvxos6bI=/3425x3425/filters:fill(auto,1)/india-GettyImages-1037970722-b5b5098a537c47fc8d9442d5c076f5ff.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 140px 20px;
+            animation: slideBackgrounds 20s infinite;
+        }
+        @keyframes slideBackgrounds {
+            0% {
+                background-image: url({% static '.\admin\img\9467199.jpg'%});
+            }
+            33% {
+                background-image: url({% static '.\admin\img\4136686.jpg'%});
+            }
+            66% {
+                background-image: url({% static '.\admin\img\6373674.jpg'%});
+            }
+            100% {
+                background-image: url({% static '.\admin\img\2149489.jpg'%});
+            } 
+        }
+        
+        .hero h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .hero .btn {
+            background-color: #fcc605;
+            padding: 12px 30px;
+            font-size: 20px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .hero .btn:hover {
+            background-color: #f5a300;
+        }
+        
+        /* About Section */
+        .background-about {
+            background-color: #fff;
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: -30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .background-about h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .background-about p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .trending-places {
+            display: flex;
+            text-align: center;
+            margin: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .trending-places h2 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .trending-places p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        .trending-places img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .trending-places img:hover {
+            transform: scale(1.05);
+        }
+        
+        .trending-places p:last-child {
+            font-size: 1.2em;
+            color: #222;
+            margin-top: 10px;
+        }
+        
+        
+        /* Rooms Section */
+        .rooms {
+            background-color:rgb(221, 221, 221);
+            padding: 50px 20px;
+            border-radius: 10px;
+        }
+        
+        .rooms .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .rooms .section-title {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .rooms p {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .room-cards {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .room-card {
+            background-color: #fff;
+            width: 30%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .room-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .room-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .room-card h3 {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #333;
+        }
+        
+        .room-card .btn {
+            background-color: #f7c929;
+            padding: 10px 25px;
+            margin: 10px 0;
+            font-size: 18px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .room-card .btn:hover {
+            background-color: #f5a300;
+        }
+        
+        /* Footer */
+        footer {
+            background-color:rgb(215, 225, 238);
+            color: #fff;
+            padding: 50px 20px;
+            text-align: center;
+        }
+        
+        footer ul {
+            display: flex;
+            justify-content: space-around;
+            list-style-type: none;
+            margin-bottom: 30px;
+        }
+        
+        footer ul div {
+            width: 30%;
+        }
+        
+        footer h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color:rgb(0, 0, 0);
+        }
+        
+        footer li {
+            margin: 10px 0;
+        }
+        
+        footer a {
+            color:rgb(37, 37, 37);
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        
+        footer a:hover {
+            color:rgb(2, 67, 247);
+        }
+        
+        footer hr {
+            border: 0;
+            height: 4px;
+            background-color:rgb(255, 255, 255);
+            margin-bottom: 20px;
+        }
+        
+        footer p {
+            font-size: 14px;
+            color:rgb(0, 0, 0);
+            margin-top: 20px;
+        }        
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <h1>🇮🇳</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home"><button type="button">Home</button></a></li>
+            <li><a href="#rooms"><button type="button">Our Services</button></a></li>
+            {% if request.user.is_authenticated %}
+            <div class="user-dropdown">
+                <button class="user-button"><b>{{ short }}</b></button>
+                <div class="dropdown-content">
+                    <p><strong>Name:</strong> {{ short }}</p>
+                    <p><strong>Email:</strong> {{ uname }}</p>
+                    <a href="#"><button type="button">Account Settings</button></a>
+                    <a href="{% url 'logout_page' %}"><button type="button">Log out</button></a>
+                </div>
+            </div>
+            {% else %} 
+            <li><a href="{% url 'login' %}"><button type="button">Sign In</button> </a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Welcome to Amazing India</h2>
+            <p>Best Country for Everyone</p>
+            <a href="#rooms" class="btn">Explore India </a>
+        </div>
+    </section>
+
+    {% comment %} <section>
+        <div class="background-about">
+            <h2>Beautiful Landscape to Capature</h2>
+            <br>
+            <p>The States Where people make memories .. events ... and more ....</p>
+            <br>
+            <p>We provide the most of the beautiful places..which are land in every corner of India  </p>
+        </div>
+    </section> {% endcomment %}
+    <div>
+        <h2>Trending destinations</h2>
+        <p>Most popular choices for travellers from India</p>
+        <div class="trending-places">
+            <img src="media/{{one.state_pics}}" alt="">
+            <p>{{one.state_name}}</p>
+            <img src="media/{{two.state_pics}}" alt="">
+            <p>{{two.state_name}}</p>
+        </div>
+    </div>
+   
+
+    <section id="rooms" class="rooms">
+        <div class="container">
+            <h2 class="section-title">Explore India </h2>
+            <p>These popular destinations have a lot to offer</p>
+            <br>
+            <div class="room-cards">
+                {% for i in all_data %}
+                <div class="room-card">
+                    <img src= "media/{{ i.state_pics }}" alt="Room 1">
+                    <h3>{{i.state_name}}</h3>
+                    <br>
+                    <a href="explore/{{i.state_name}}" class="btn">Explore {{i.state_name}}</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <footer>
+            <ul>
+                <div class="foot-02"> 
+                    <h3>Support</h3>
+                    <li><a href="">Coronavirus (COVID-19) FAQs</a></li>
+                    <li><a href="">Contact Customer Service</a></li>
+                    <li><a href="">Safety resource centre</a></li>
+                </div>
+                <div class="foot-03"> 
+                    <h3>Terms & Settting</h3>
+                    <li><a href="">Privacy & cookies</a></li>
+                    <li><a href="">Grievance officer</a></li>
+                    <li><a href="">Terms and conditions</a></li>
+                </div>
+                <div class="foot-04"> 
+                    <h3 >About</h3> 
+                    <li><a href="">Careers</a></li>
+                    <li><a href="{% url 'sending_data'%}">Admin Login</a></li>
+                </div>
+            </ul>
+
+            <hr/>
+            
+            <p>&copy; Indian Paradise.com is provide India's Best travel places. It's the India's leader in online travel and related services.</p>
+            <p> Copyright © 2024–2025 Indian Paradise.com™. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
