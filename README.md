@@ -1,8 +1,8 @@
 # India Gems.com
 
-This is a proof of concept for an AI-powered hedge fund.  The goal of this project is to explore the use of AI to make trading decisions.  This project is for **educational** purposes only and is not intended for real trading or investment.
+This is a proof of concept for an AI-powered Travel Guide Website. The goal of this project is to explore the use of AI for visit beautiful places in India. This project is for **educational** purposes only .
 
-This system employs several agents working together:
+This system provides you attractive user interface and  :
 
 1. Valuation Agent - Calculates the intrinsic value of a stock and generates trading signals
 2. Sentiment Agent - Analyzes market sentiment and generates trading signals
@@ -10,8 +10,6 @@ This system employs several agents working together:
 4. Technical Analyst - Analyzes technical indicators and generates trading signals
 5. Risk Manager - Calculates risk metrics and sets position limits
 6. Portfolio Manager - Makes final trading decisions and generates orders
-   
-<img width="1060" alt="Screenshot 2025-01-03 at 5 39 25 PM" src="https://github.com/user-attachments/assets/4611aace-27d0-43b2-9a70-385b40336e3f" />
 
 Note: the system simulates trading decisions, it does not actually trade.
 
@@ -19,23 +17,19 @@ Note: the system simulates trading decisions, it does not actually trade.
 
 This project is for **educational and research purposes only**.
 
-- Not intended for real trading or investment
 - No warranties or guarantees provided
 - Past performance does not indicate future results
-- Creator assumes no liability for financial losses
-- Consult a financial advisor for investment decisions
+- This not gives you accurate data
 
 By using this software, you agree to use it solely for learning purposes.
 
 ## Table of Contents
 - [Setup](#setup)
 - [Usage](#usage)
-  - [Running the Hedge Fund](#running-the-hedge-fund)
-  - [Running the Backtester](#running-the-backtester)
+  - [Running the Project](#running-the-hedge-fund)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
 - [Feature Requests](#feature-requests)
-- [License](#license)
 
 ## Setup
 
@@ -116,8 +110,5 @@ Ecommrce/
 
 ## Feature Requests
 
-If you have a feature request, please open an [issue](https://github.com/virattt/ai-hedge-fund/issues) and make it is tagged with `enhancement`.
+If you have a feature request, please open an [issue]() and make it is tagged with `enhancement`.
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
