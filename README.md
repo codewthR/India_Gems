@@ -4,7 +4,7 @@ This is a proof of concept for an AI-powered Travel Guide Website. The goal of t
 
 This system provides you attractive user interface and  :
 
-1. Discover Your Next Adventure: Our platform offers personalized travel recommendations and detailed guides to the best destinations around the world.
+1. Discover Your Next Adventure: Our platform offers personalized travel recommendations and detailed guides to the best destinations around the India.
 2. Seamless User Experience: Easily sign up and log in to share your travel memories—photos, videos, and more—helping to enrich our community and make this platform even       more insightful.
 3. Smart Travel Suggestions: Powered by advanced machine learning, our system provides tailored travel suggestions based on your preferences and interests.
 4. Effortless Content Management: Admin login functionality ensures smooth content management, allowing administrators to oversee and curate all shared materials for a         better user experience.
