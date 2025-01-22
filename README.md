@@ -4,12 +4,10 @@ This is a proof of concept for an AI-powered Travel Guide Website. The goal of t
 
 This system provides you attractive user interface and  :
 
-1. Valuation Agent - Calculates the intrinsic value of a stock and generates trading signals
-2. Sentiment Agent - Analyzes market sentiment and generates trading signals
-3. Fundamentals Agent - Analyzes fundamental data and generates trading signals
-4. Technical Analyst - Analyzes technical indicators and generates trading signals
-5. Risk Manager - Calculates risk metrics and sets position limits
-6. Portfolio Manager - Makes final trading decisions and generates orders
+1. Discover Your Next Adventure: Our platform offers personalized travel recommendations and detailed guides to the best destinations around the world.
+2. Seamless User Experience: Easily sign up and log in to share your travel memories—photos, videos, and more—helping to enrich our community and make this platform even       more insightful.
+3. Smart Travel Suggestions: Powered by advanced machine learning, our system provides tailored travel suggestions based on your preferences and interests.
+4. Effortless Content Management: Admin login functionality ensures smooth content management, allowing administrators to oversee and curate all shared materials for a         better user experience.
 
 Note: the system simulates trading decisions, it does not actually trade.
 
@@ -19,14 +17,12 @@ This project is for **educational and research purposes only**.
 
 - No warranties or guarantees provided
 - Past performance does not indicate future results
-- This not gives you accurate data
+- This not gives you accurate travel data 
 
 By using this software, you agree to use it solely for learning purposes.
 
 ## Table of Contents
 - [Setup](#setup)
-- [Usage](#usage)
-  - [Running the Project](#running-the-hedge-fund)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
 - [Feature Requests](#feature-requests)
@@ -49,24 +45,11 @@ pip install django
 # Create .env file for your API keys
 cp .env.example .env
 ```
-**Important**: You must to set the OpenAI API key for the hedge fund to work.
-
-Financial data for AAPL, GOOGL, MSFT, NVDA, and TSLA is free and does not require an API key.
-
-For any other ticker, you will need to set the `FINANCIAL_DATASETS_API_KEY` in the .env file.
-
-## Usage
 
 ### Running the Hedge Fund
 ```bash
 python manage.py runserver 8001 (Port address )
 ```
-
-**Example Output:**
-<img width="992" alt="Screenshot 2025-01-06 at 5 50 17 PM" src="https://github.com/user-attachments/assets/e8ca04bf-9989-4a7d-a8b4-34e04666663b" />
-
-**Example Output:**
-<img width="941" alt="Screenshot 2025-01-06 at 5 47 52 PM" src="https://github.com/user-attachments/assets/00e794ea-8628-44e6-9a84-8f8a31ad3b47" />
 
 ## Project Structure 
 ```
