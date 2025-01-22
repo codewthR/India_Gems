@@ -23,6 +23,7 @@ By using this software, you agree to use it solely for learning purposes.
 
 ## Table of Contents
 - [Setup](#setup)
+- [Database]{#database)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
 - [Feature Requests](#feature-requests)
@@ -50,6 +51,10 @@ cp .env.example .env
 ```bash
 python manage.py runserver 8001 (Port address )
 ```
+# database
+'''
+Databse Used MySql,
+You can also modify it for self use : In Settings.py inside the Root Folder(Ecommerce) Change database settings 
 
 ## Project Structure 
 ```
@@ -80,6 +85,7 @@ Ecommrce/
 |   ├── manage.py
 ...
 ```
+##database
 
 ## Contributing
 
