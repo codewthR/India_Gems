@@ -31,8 +31,8 @@ By using this software, you agree to use it solely for learning purposes.
 
 Clone the repository:
 ```bash
-git clone https://github.com/virattt/ai-hedge-fund.git
-cd ai-hedge-fund
+https://github.com/codewthR/India_Gems.git
+cd India_gems
 ```
 
 1. Install Django (if not already installed):
@@ -46,7 +46,7 @@ pip install django
 cp .env.example .env
 ```
 
-### Running the Hedge Fund
+### Running the Django App
 ```bash
 python manage.py runserver 8001 (Port address )
 ```
