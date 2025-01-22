@@ -13,7 +13,7 @@ Note: the system simulates trading decisions, it does not actually trade.
 
 ## Disclaimer
 
-This project is for **educational and research purposes only**.
+This project is for **Research purposes only and use list of functionalities offered by Django Python Backend Framework**.
 
 - No warranties or guarantees provided
 - Past performance does not indicate future results
@@ -35,7 +35,7 @@ git clone https://github.com/virattt/ai-hedge-fund.git
 cd ai-hedge-fund
 ```
 
-1. Install Poetry (if not already installed):
+1. Install Django (if not already installed):
 ```bash
 pip install django
 ```
