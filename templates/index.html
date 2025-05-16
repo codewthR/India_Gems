@@ -19,7 +19,7 @@
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f0f0f0;
-            color: #333;
+            color: #464545;
             line-height: 1.6;
         }
         
@@ -28,19 +28,21 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(0, 0, 0, 0.226);;
-            padding: 7px 15px;
+            background-color: rgba(95, 95, 95, 0.226);;
+            padding: 4px 12px;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
         }
         
-        .navbar .logo h1 {
-            color: #fff;
-            font-size: 30px;
-        }
         
+        .navbar .logo img {
+        height: 60px;
+        width: 120px;
+        margin-right: 10px;
+        }
+                
         .navbar .nav-links {
             list-style-type: none;
             display: flex;
@@ -341,7 +343,8 @@
 
     <nav class="navbar">
         <div class="logo">
-            <h1>🇮🇳</h1>
+            <img src="{% static 'admin\img\ggggg-removebg-preview.png' %}" alt="FoodCourt Logo" />
+    </div>
         </div>
         <ul class="nav-links">
             <li><a href="#home"><button type="button">Home</button></a></li>
