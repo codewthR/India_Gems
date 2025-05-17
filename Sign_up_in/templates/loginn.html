@@ -1,245 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login Page</title>
-    <style>
-      /* General Reset */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-      
-      .login-container {
-        background-color: #fff;
-        padding: 30px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 300px;
-        text-align: center;
-      }
-      
-      h2 {
-        margin-bottom: 20px;
-        font-size: 24px;
-        color: #333;
-      }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      /* General styles for the messages container */
-      ul.messages {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;  /* Space between alerts */
-        max-width: 600px; /* Limit the max width */
-        margin-top: 20px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      
-      /* Styling individual alert messages */
-      ul.messages .alert {
-        margin: 0;
-        padding: 12px;
-        border-radius: 8px;
-        font-size: 16px;
-        font-weight: bold;
-        color: black;
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #6c63ff, #48c6ef);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container {
+      background-color: #ffffff;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-container h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 25px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 14px 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      outline: none;
+      background: transparent;
+    }
+
+    .input-group label {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: white;
+      padding: 0 5px;
+      color: #777;
+      transition: 0.3s ease;
+      pointer-events: none;
+    }
+
+    .input-group input:focus + label,
+    .input-group input:not(:placeholder-shown) + label {
+      top: -8px;
+      left: 8px;
+      font-size: 13px;
+      color: #6c63ff;
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    .password-container i {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #666;
+      font-size: 18px;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #6c63ff;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background-color: #5848d6;
+    }
+
+    .signup-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .signup-link a {
+      color: #6c63ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* Message alerts */
+    ul.messages {
+      list-style: none;
+      margin-bottom: 20px;
+      padding: 0;
+    }
+
+    ul.messages li {
+      margin-bottom: 10px;
+      padding: 12px 16px;
+      border-radius: 6px;
+      color: white;
+      font-size: 15px;
+      animation: fadeIn 0.5s ease-out forwards;
+    }
+
+    .alert-success {
+      background-color: #28a745;
+    }
+
+    .alert-danger {
+      background-color: #dc3545;
+    }
+
+    .alert-info {
+      background-color: #17a2b8;
+    }
+
+    .alert-warning {
+      background-color: #ffc107;
+      color: #000;
+    }
+
+    @keyframes fadeIn {
+      from {
         opacity: 0;
-        animation: fadeIn 1s ease-out forwards;
-        box-shadow: 0 4px 6px rgba(228, 0, 0, 0.1);
-        position: relative;
+        transform: translateY(-10px);
       }
-      
-      /* Different alert colors based on tags */
-      ul.messages .alert-info {
-        background-color: #17a2b8;
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
-      
-      ul.messages .alert-success {
-        background-color: #28a745;
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 30px 20px;
       }
-      
-      ul.messages .alert-warning {
-        background-color: #ffc107;
-      }
-      
-      ul.messages .alert-danger {
-        background-color: #dc3545;
-      }
-      
-      /* Keyframes for the fade-in animation */
-      @keyframes fadeIn {
-        0% {
-          opacity: 0;
-          transform: translateY(-20px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      
-      /* Bounce animation for added emphasis */
-      @keyframes bounce {
-        0% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
-        100% {
-          transform: translateY(0);
-        }
-      }
-      
-      /* When the message is displayed, add a bounce animation */
-      ul.messages .alert.show {
-        animation: bounce 0.5s ease-out;
-      }
-      
-      /* Styling the close button (optional) */
-      ul.messages .alert .close {
-        color: white;
-        font-size: 20px;
-        font-weight: bold;
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        transition: transform 0.2s;
-      }
-      
-      ul.messages .alert .close:hover {
-        transform: scale(1.2);
-      }
-      
-      /* Hover effect to make alerts slightly dim when hovered */
-      ul.messages .alert:hover {
-        opacity: 0.9;
-      }
-      
-      /* Responsive styling for smaller screens */
-      @media (max-width: 768px) {
-        ul.messages .alert {
-          font-size: 14px; /* Reduce font size on smaller screens */
-        }
-      }
-      
-      
-      .input-group {
-        margin-bottom: 15px;
-        text-align: left;
-      }
-      
-      .input-group label {
-        font-size: 14px;
-        color: #555;
-      }
-      
-      .input-group input {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 16px;
-      }
-      
-      .input-group input:focus {
-        border-color: #4CAF50;
-        outline: none;
-      }
-      
-      /* Style for password container with eye icon */
-      .password-container {
-        position: relative;
-      }
-      
-      #toggle-password {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        cursor: pointer;
-        font-size: 18px;
-      }
-      
-      .login-btn {
-        width: 100%;
-        padding: 10px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        font-size: 16px;
-        cursor: pointer;
-      }
-      
-      .login-btn:hover {
-        background-color: #45a049;
-      }
-      
-      .signup-link {
-        margin-top: 20px;
-        font-size: 14px;
-      }
-      
-      .signup-link a {
-        color: #4CAF50;
-        text-decoration: none;
-      }
-      
-      .signup-link a:hover {
-        text-decoration: underline;
-      }
-      
-    </style>
+    }
+  </style>
 </head>
 <body>
   <div class="login-container">
     <h2>Login</h2>
     <form action="#" method="post">
-    {% csrf_token %}
+      {% csrf_token %}
+
       {% if messages %}
       <ul class="messages">
-        <div class="alert">
         {% for message in messages %}
-          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          <li class="alert-{{ message.tags }}">{{ message }}</li>
         {% endfor %}
-      </div>
       </ul>
-    {% endif %}
-    <br/>
-        <div class="input-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required>
-        </div>
-        <div class="input-group">
-            <label for="password">Password</label>
-            <div class="password-container">
-            <input type="password" id="password" name="password" required>
-        </div>
+      {% endif %}
+
+      <div class="input-group">
+        <input type="text" id="username" name="username" required placeholder=" " />
+        <label for="username">Username</label>
       </div>
+
+      <div class="input-group password-container">
+        <input type="password" id="password" name="password" required placeholder=" " />
+        <label for="password">Password</label>
+        <!-- Optional: Add JS to toggle password -->
+        <!-- <i id="toggle-password" class="fa fa-eye"></i> -->
+      </div>
+
       <button type="submit" class="login-btn">Login</button>
+
+      <p class="signup-link">
+        Don't have an account?
+        <a href="{% url 'signup' %}">Sign Up</a>
+      </p>
     </form>
-    <p class="signup-link">Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
-    {% comment %} <p class="signup-link">Forgot Password ! <a href="{% url 'forgot-password' %}">Reset</a></p> {% endcomment %}
   </div>
+
+      <script>
+  const togglePassword = document.getElementById('toggle-password');
+  const passwordInput = document.getElementById('password');
+
+  togglePassword.addEventListener('click', () => {
+    const type = passwordInput.type === 'password' ? 'text' : 'password';
+    passwordInput.type = type;
+    togglePassword.classList.toggle('fa-eye-slash');
+  });
+</script>
 </body>
 </html>

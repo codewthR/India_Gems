@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+                .gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.photo-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background: white;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.photo-card img {
+    align-content: center;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.like-btn {
+  margin-top: 5px;
+  background: none;
+  border: none;
+  color: #e0245e;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.comment-form {
+  margin-top: 10px;
+}
+
+.comment-form input {
+  width: 75%;
+  padding: 6px;
+  margin-right: 5px;
+}
+
+.comment-form button {
+  padding: 6px 10px;
+  background: #007bff;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    <h2>Photo Feed</h2>
+    <div class="gallery">
+    {% for photo in photos %}
+        <div class="photo-card" data-id="{{ photo.id }}">
+        <p><strong>{{ photo.user.username }}</strong></p>
+        <img src="{{ photo.image.url }}" alt="Photo">
+        {% if photo.caption %}
+            <p>{{ photo.caption }}</p>
+        {% endif %}
+        <button class="like-btn">❤️ Like (<span class="like-count">{{ photo.total_likes }}</span>)</button>
+
+        <div class="comments">
+            {% for comment in photo.comments.all %}
+            <p><strong>{{ comment.user.username }}:</strong> {{ comment.text }}</p>
+            {% endfor %}
+        </div>
+
+        <form class="comment-form">
+            {% csrf_token %}
+            <input type="text" name="text" placeholder="Write a comment..." required>
+            <button type="submit">Post</button>
+        </form>
+        </div>
+    {% endfor %}
+    </div>
+
+    <script>
+    document.querySelectorAll('.like-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const card = this.closest('.photo-card');
+        const photoId = card.getAttribute('data-id');
+
+        fetch("{% url 'like_photo' %}", {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': '{{ csrf_token }}',
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `photo_id=${photoId}`
+        })
+        .then(res => res.json())
+        .then(data => {
+        card.querySelector('.like-count').textContent = data.likes;
+        this.textContent = data.action === 'liked' ? `❤️ Liked (${data.likes})` : `❤️ Like (${data.likes})`;
+        });
+    });
+    });
+
+    document.querySelectorAll('.comment-form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const card = this.closest('.photo-card');
+        const photoId = card.getAttribute('data-id');
+        const textInput = this.querySelector('input[name="text"]');
+
+        fetch("{% url 'add_comment' %}", {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': '{{ csrf_token }}',
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `photo_id=${photoId}&text=${textInput.value}`
+        })
+        .then(res => res.json())
+        .then(data => {
+        const commentList = card.querySelector('.comments');
+        commentList.innerHTML += `<p><strong>${data.username}:</strong> ${data.text}</p>`;
+        textInput.value = '';
+        });
+    });
+    });
+    </script>
+    {% endblock %}
+
+
+    
+</body>
+</html>

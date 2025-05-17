@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* Reset and base styling */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            background-color: #1e1e2f;
+            color: #fff;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            margin: 0;
+        }
+
+        .navbar a {
+            color: #00bcd4;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* Container styling */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* File Upload Area */
+        .upload-area {
+            border: 2px dashed #aaa;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 20px;
+            background: #f4f4f4;
+            transition: background 0.3s;
+        }
+
+        .upload-area.dragover {
+            background-color: #e0f7fa;
+        }
+
+        .upload-area input {
+            display: none;
+        }
+
+        .upload-label {
+            cursor: pointer;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #00bcd4;
+            color: white;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        /* Image preview */
+        #preview {
+            margin-top: 20px;
+            max-width: 300px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        /* Responsive image gallery */
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .image-card {
+            flex: 1 1 200px;
+            background: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .image-card img {
+            max-width: 100%;
+            border-radius: 4px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar a {
+                margin-left: 0;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>My Dashboard</h1>
+        {% if user.is_authenticated %}
+            <div>
+                <span>Welcome, {{ user.username }}</span>
+                <a href="{% url 'images' %}">My Images</a>
+                <a href="{% url 'upload' %}">Upload</a>
+                <a href="{% url 'logout_page' %}">Logout</a>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="container">
+        {% block content %}
+        <!-- Default content goes here -->
+        {% endblock %}
+    </div>
+
+    <script>
+        // Drag & Drop upload area (optional enhancement)
+        const dropArea = document.querySelector('.upload-area');
+        const fileInput = document.getElementById('imageInput');
+        const preview = document.getElementById('preview');
+
+        if (dropArea && fileInput) {
+            dropArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropArea.classList.add('dragover');
+            });
+
+            dropArea.addEventListener('dragleave', () => {
+                dropArea.classList.remove('dragover');
+            });
+
+            dropArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropArea.classList.remove('dragover');
+                const file = e.dataTransfer.files[0];
+                fileInput.files = e.dataTransfer.files;
+                previewFile(file);
+            });
+
+            fileInput.addEventListener('change', () => {
+                previewFile(fileInput.files[0]);
+            });
+
+            function previewFile(file) {
+                if (file && file.type.startsWith('image/')) {
+                    preview.src = URL.createObjectURL(file);
+                    preview.style.display = 'block';
+                } else {
+                    preview.style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

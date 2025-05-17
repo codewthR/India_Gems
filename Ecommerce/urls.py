@@ -27,6 +27,8 @@ urlpatterns = [
     path('', include('Sign_up_in.urls')),
     path('', include('Details_all.urls')),
     path('', include('User_interface.urls')),
+    path('', include('gallery.urls')),
+
 ]
 
 if settings.DEBUG:

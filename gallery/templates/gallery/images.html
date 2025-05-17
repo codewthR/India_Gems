@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Gallery</title>
+  <style>
+    /* Heading */
+    h2 {
+      font-size: 28px;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    /* Gallery grid */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    /* Image card container */
+    .image-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+
+    .image-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+
+    /* Make image clickable */
+    .image-card a {
+      display: block;
+      text-decoration: none;
+    }
+
+    .image-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-bottom: 1px solid #eee;
+    }
+
+    /* Date position in bottom-right */
+    .upload-date {
+      position: absolute;
+      bottom: 8px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-size: 12px;
+      padding: 3px 7px;
+      border-radius: 4px;
+    }
+
+        .upload-link {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #2d67fa;
+    border-radius: 8px;
+    background-color: #66b3e3;
+    color: #ffffff;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  </style>
+</head>
+<body>
+
+  <h2>My Uploaded Images</h2>
+
+  {% if photos %}
+    <div class="image-gallery">
+      {% for photo in photos %}
+        <div class="image-card">
+          <a href="{{ photo.image.url }}" target="_blank">
+            <img src="{{ photo.image.url }}" alt="Uploaded Image">
+          </a>
+          <div class="upload-date">
+            {{ photo.uploaded_at|date:"F d, Y" }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No images uploaded.</p>
+  {% endif %}
+
+  <br/>
+  <a class="upload-link" href="{% url 'upload' %}"><b>Upload More </b></a>
+
+</body>
+</html>
+{% endblock %}

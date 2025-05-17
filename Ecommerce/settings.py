@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Sign_up_in',
     'User_interface',
-    'Details_all'
+    'Details_all',
+    'gallery'
 ]
 
 MIDDLEWARE = [
